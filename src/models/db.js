@@ -1,7 +1,5 @@
 import { Sequelize } from "sequelize";
 
-// const { Sequelize } = require("sequelize");
-
 const sequelize = new Sequelize(
     "apirest_liguelead",
     "root",
@@ -19,9 +17,5 @@ sequelize.authenticate().then((function(){
 });
 
 
-export default sequelize
+export default sequelize;
 
-// module.exports = {
-//     Sequelize: Sequelize,
-//     sequelize: sequelize
-// }
