@@ -1,11 +1,13 @@
 
+// modulos importados
+
 import express from 'express';
 const app = express();
 app.use(express.json())
 
+// middlewares para requisicao
 import bodyParser from 'body-parser';
 import Projeto from './models/Projects.js';
-// const projects = [] 
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
@@ -22,7 +24,7 @@ app.post('/projects', (req, res) => {
     });
 });
 
-app.get('/', (req, res) => {
+app.get('/projects', (req, res) => {
     Projeto.findAll().then(function(projects){
         res.send({projetos: projects });
     }).catch(function(erro){
@@ -64,21 +66,3 @@ app.delete("/deletar/:id", function(req, res){
 })
 
 app.listen(8080);
-
-
-
-// app.post('/projects')
-// app.put('/projects')
-// app.delete('/projects')
-
-// 1. CRUD de Projetos
-// POST /projects → Cria um projeto.
-// GET /projects → Lista todos os projetos.
-// GET /projects/:id → Retorna dados do projeto.
-// PUT /projects/:id → Atualiza informações do projeto.
-// DELETE /projects/:id → Remove um projeto.
-
-// 2. CRUD de Tarefas
-// POST /projects/:projectId/tasks → Cria tarefa vinculada a um projeto.
-// PUT /tasks/:id → Atualiza status/título/descrição.
-// DELETE /tasks/:id → Remove tarefa.
