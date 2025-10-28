@@ -8,10 +8,13 @@ app.use(express.json())
 // middlewares para requisicao
 import bodyParser from 'body-parser';
 import Projeto from './models/Projects.js';
+import Tarefa from './models/Tasks.js';
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
+
+// CRUD Projetos
 app.post('/projects', (req, res) => {
     projects.push(req.body)
     res.status(201).json(req.body)
@@ -64,5 +67,16 @@ app.delete("/deletar/:id", function(req, res){
         res.send("Erro ao deletar projeto" + erro)
     });
 })
+
+// CRUD Tarefas
+
+app.delete("/deletarTarefa/:id", function(req, res){
+    Tarefa.destroy({where: {"id" : req.params.id}}).then(function(){
+        res.send("Tarefa deletada!");
+    }).catch(function(erro){
+        res.send("Erro ao deletar Tarefa" + erro)
+    });
+})
+
 
 app.listen(8080);
