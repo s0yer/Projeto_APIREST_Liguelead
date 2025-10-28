@@ -1,18 +1,25 @@
 
-// modulos importados
-
+// modulos importados e configuracoes
 import express from 'express';
 const app = express();
 app.use(express.json())
 
 // middlewares para requisicao
 import bodyParser from 'body-parser';
+
+// modelos
 import Projeto from './models/Projects.js';
 import Tarefa from './models/Tasks.js';
+import sequelize from './config/db.js';
+
+// rotas ???
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
+// variaveis de ambiente
+
+const PORT = process.env.API_PORT || 8081;
 
 // CRUD Projetos
 app.post('/projects', (req, res) => {
@@ -78,5 +85,26 @@ app.delete("/deletarTarefa/:id", function(req, res){
     });
 })
 
+async function startServer(){
+    try{
+        await sequelize.authenticate();
+        console.log('Conexão com o Banco de Dados estabelecida');
+        
+        // para dev
+        await sequelize.sync({force: false});
+        console.log('Tabelas sincronizadas - projetc e tasks');
 
-app.listen(8080);
+        //Inicia servidor
+        app.listen(PORT, () => {
+            console.log(`Servidor - http://localhost:${PORT}`);
+        })
+    }catch (error){
+        console.error('Falha ao iniciar o servidor - ', error.message);
+        // encerra processo
+        process.exit(1);
+    }
+}
+
+startServer();
+
+// app.listen(8080);

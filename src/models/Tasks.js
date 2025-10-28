@@ -2,6 +2,7 @@
 
 import sequelize from "../config/db.js";
 import Projeto from "./Projects.js";
+import  DataTypes  from "sequelize";
 
 
 const Tarefa = sequelize.define("tasks", {

@@ -21,4 +21,3 @@ Projeto.sync({force: false});
 export default Projeto;
 
 
-
