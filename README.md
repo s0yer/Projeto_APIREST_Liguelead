@@ -1,10 +1,10 @@
 # Projeto_APIREST_Liguelead
 
 
-============##################=====================##########################===========================
+============##################=====================##########################==============
 
->> Rodar em Modo Desenvolvimento - Local
-Rodar a API diretamente (sem Docker):
+> Rodar em Modo Desenvolvimento - Local
+Rodar a API diretamente - sem Docker:
 
 Instalar dependências:
 -no terminal
@@ -23,7 +23,7 @@ ou
 node --watch server.js
 
 
-============##################=====================##########################===========================
+============##################=====================##########################==============
 
 
 # 🚀 API REST: Gerenciamento de Projetos e Tarefas
