@@ -11,4 +11,4 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY . .
 EXPOSE 8081
-CMD ["node", "src/Server.js"]
+CMD ["node", "src/server.js"]
