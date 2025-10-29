@@ -40,7 +40,6 @@ app.get('/projects', (req, res) => {
     }).catch(function(erro){
         res.send("Erro ao buscar os dados" + erro);
     });
-
 });
 
 app.patch("/atualizar/:id", function(req,res){
@@ -75,7 +74,30 @@ app.delete("/deletar/:id", function(req, res){
     });
 })
 
-// CRUD Tarefas
+// CRUD Tarefas ---------------------------------------------------------
+
+// get apenas para testes
+app.get('/tasks', (req, res) => {
+    Tarefa.findAll().then(function(tasks){
+        res.send({task: tasks });
+    }).catch(function(erro){
+        res.send("Erro ao buscar tarefas" + erro);
+    });
+});
+
+app.post('/tasks', (req, res) => {
+    // tasks.push(req.body)
+    res.status(201).json(req.body)
+    Tarefa.create({
+        nomeTarefa: req.body.nomeTarefa,
+        titulo: req.body.titulo,
+        status: req.body.status
+    }).then(function(){
+        res.send("Tarefa criada com sucesso.");
+    }).catch(function(erro){
+        res.send("Erro criacao tarafa:" + erro);
+    });
+});
 
 app.delete("/deletarTarefa/:id", function(req, res){
     Tarefa.destroy({where: {"id" : req.params.id}}).then(function(){
@@ -85,6 +107,9 @@ app.delete("/deletarTarefa/:id", function(req, res){
     });
 })
 
+
+// Inicia Servidor
+
 async function startServer(){
     try{
         await sequelize.authenticate();
@@ -92,7 +117,7 @@ async function startServer(){
         
         // para dev
         await sequelize.sync({force: false});
-        console.log('Tabelas sincronizadas - projetc e tasks');
+        console.log('Tabelas sincronizadas - projects e tasks');
 
         //Inicia servidor
         app.listen(PORT, () => {

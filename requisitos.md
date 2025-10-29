@@ -1,6 +1,4 @@
 
-
-
 Objetivo
 Criar uma API REST em Node.js para gerenciar projetos e tarefas, incluindo:
 

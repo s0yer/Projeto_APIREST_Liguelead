@@ -15,10 +15,10 @@ const Tarefa = sequelize.define("tasks", {
 
     titulo: { 
         type: DataTypes.STRING, 
-        allowNull: false
+        allowNull: true
     },
     status: {
-        type: DataTypes.ENUM('Pendente', 'Desenvolvendo', 'Concluida'),
+        type: DataTypes.ENUM('Pendente', 'Desenvolvendo', 'Concluido'),
         defaultValue: 'Pendente',
         allowNull: false,
     }        
